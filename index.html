@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>A Wedding Surprise</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=DM+Sans:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="celebration" id="celebration">
+      <div class="glow glow-left"></div>
+      <div class="glow glow-right"></div>
+      <div class="petals" aria-hidden="true"></div>
+
+      <section class="card" aria-label="Wedding apology and gift">
+        <h1>I'm Sorry</h1>
+        <p class="invite">
+          I'm sorry I couldn't come<br />
+          to your wedding celebration.
+        </p>
+
+        <div class="rule">
+          <span></span>
+          <b>♥</b>
+          <span></span>
+        </div>
+
+        <p class="wishes">Sending you both love & happiness — with love, Kathir</p>
+
+        <div class="gift-area" id="giftArea">
+          <p class="gift-hint" id="giftHint">Catch the BOX to open it!</p>
+          <button class="gift" id="gift" type="button" aria-label="Catch the moving wedding gift">
+            <span class="lid">
+              <i class="ribbon-vertical"></i>
+              <i class="bow bow-left"></i>
+              <i class="bow bow-right"></i>
+              <i class="bow-knot"></i>
+            </span>
+            <span class="box">
+              <i class="ribbon-vertical"></i>
+              <i class="ribbon-horizontal"></i>
+            </span>
+          </button>
+        </div>
+      </section>
+
+      <div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+        <div class="modal-card">
+          <button class="close" id="closeModal" type="button" aria-label="Close">×</button>
+          <div class="modal-art" aria-hidden="true">💍</div>
+          <p class="modal-kicker">Congratulations</p>
+          <h2 id="modalTitle">Happy Married Life Gowtham &amp; Priyadharshini</h2>
+          <p>May your marriage be filled with laughter, love, and beautiful moments.</p>
+          <div class="couple-signature">Kathir</div>
+        </div>
+      </div>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
