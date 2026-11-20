@@ -147,7 +147,7 @@ h1 {
 .gift-hint {
   position: absolute;
   left: 50%;
-  bottom: max(14px, env(safe-area-inset-bottom));
+  top: max(14px, env(safe-area-inset-top));
   z-index: 1;
   width: 100%;
   transform: translateX(-50%);
@@ -163,6 +163,7 @@ h1 {
 .gift {
   --gift-x: 50%;
   --gift-y: 76%;
+  --gift-scale: 1;
   position: absolute;
   left: var(--gift-x);
   top: var(--gift-y);
@@ -171,7 +172,7 @@ h1 {
   padding: 0;
   border: 0;
   background: transparent;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%) scale(var(--gift-scale));
   cursor: pointer;
   transition: left 0.36s cubic-bezier(.22,.75,.36,1), top 0.36s cubic-bezier(.22,.75,.36,1), transform 0.25s;
   -webkit-tap-highlight-color: transparent;
@@ -181,7 +182,7 @@ h1 {
 }
 
 .gift:hover {
-  transform: translate(-50%, -50%) scale(1.04);
+  transform: translate(-50%, -50%) scale(calc(var(--gift-scale) * 1.04));
 }
 
 .lid {
@@ -273,12 +274,12 @@ h1 {
 }
 
 .gift.caught {
-  animation: giftPop 0.55s ease forwards;
+  animation: giftPop 0.9s ease forwards;
 }
 
 @keyframes giftPop {
-  0% { transform: translate(-50%, -50%) scale(1); }
-  40% { transform: translate(-50%, -50%) scale(1.18) rotate(-4deg); }
+  0% { transform: translate(-50%, -50%) scale(var(--gift-scale)); }
+  40% { transform: translate(-50%, -50%) scale(calc(var(--gift-scale) * 1.18)) rotate(-4deg); }
   100% { transform: translate(-50%, -50%) scale(0); opacity: 0; }
 }
 
@@ -424,7 +425,7 @@ h1 {
   }
 
   .gift {
-    width: 106px;
+    --gift-scale: 0.78;
   }
 
   .modal-card {

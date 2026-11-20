@@ -52,12 +52,12 @@ gift.addEventListener("click", () => {
 
   caught = true;
   gift.classList.add("caught");
-  giftHint.style.opacity = "0";
+  giftHint.textContent = "Opening your surprise...";
 
   window.setTimeout(() => {
     modal.classList.add("open");
     giftHint.textContent = "You caught the gift!";
-  }, 360);
+  }, 1200);
 });
 
 function closeGiftModal() {
@@ -66,7 +66,7 @@ function closeGiftModal() {
   moves = 0;
   gift.classList.remove("caught");
   giftHint.style.opacity = "1";
-  giftHint.textContent = "Catch the gift to open it!";
+  giftHint.textContent = "Catch the BOX to open it!";
   gift.style.setProperty("--gift-x", "50%");
   gift.style.setProperty("--gift-y", "72%");
   closeModal.blur();
