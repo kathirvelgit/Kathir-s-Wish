@@ -1,16 +1,7 @@
 const gift = document.querySelector("#gift");
-const giftArea = document.querySelector("#giftArea");
-const giftHint = document.querySelector("#giftHint");
-const modal = document.querySelector("#modal");
-const closeModal = document.querySelector("#closeModal");
 const petals = document.querySelector(".petals");
 
-let moves = 0;
-let caught = false;
-
 function moveGift() {
-  if (caught) return;
-
   const areaWidth = window.innerWidth;
   const areaHeight = window.innerHeight;
   const giftWidth = gift.offsetWidth;
@@ -28,11 +19,6 @@ function moveGift() {
 
   gift.style.setProperty("--gift-x", `${x}px`);
   gift.style.setProperty("--gift-y", `${y}px`);
-  moves += 1;
-
-  if (moves >= 3) {
-    giftHint.textContent = "Almost there—catch the gift!";
-  }
 }
 
 gift.addEventListener("pointerenter", (event) => {
@@ -44,44 +30,8 @@ gift.addEventListener("pointerdown", (event) => {
   moveGift();
 });
 
-gift.addEventListener("click", () => {
-  if (moves < 2) {
-    moveGift();
-    return;
-  }
-
-  caught = true;
-  gift.classList.add("caught");
-  giftHint.textContent = "Opening your surprise...";
-
-  window.setTimeout(() => {
-    modal.classList.add("open");
-    giftHint.textContent = "You caught the gift!";
-  }, 1200);
-});
-
-function closeGiftModal() {
-  modal.classList.remove("open");
-  caught = false;
-  moves = 0;
-  gift.classList.remove("caught");
-  giftHint.style.opacity = "1";
-  giftHint.textContent = "Catch the BOX to open it!";
-  gift.style.setProperty("--gift-x", "50%");
-  gift.style.setProperty("--gift-y", "72%");
-  closeModal.blur();
-}
-
-closeModal.addEventListener("click", closeGiftModal);
-
-modal.addEventListener("click", (event) => {
-  if (event.target === modal) closeGiftModal();
-});
-
-document.addEventListener("keydown", (event) => {
-  if (event.key === "Escape" && modal.classList.contains("open")) {
-    closeGiftModal();
-  }
+gift.addEventListener("click", (event) => {
+  if (event.detail === 0) moveGift();
 });
 
 for (let i = 0; i < 18; i += 1) {
