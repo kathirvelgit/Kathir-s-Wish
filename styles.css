@@ -75,9 +75,8 @@ body {
   position: relative;
   z-index: 2;
   width: min(680px, calc(100vw - 32px));
-  min-height: 690px;
   text-align: center;
-  padding: 46px 42px 290px;
+  padding: 46px 42px;
   border: 1px solid rgba(190, 154, 99, 0.5);
   background: rgba(255, 253, 248, 0.88);
   box-shadow: 0 22px 70px rgba(91, 55, 63, 0.11);
@@ -138,18 +137,18 @@ h1 {
 }
 
 .gift-area {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 22px;
-  height: 240px;
+  position: fixed;
+  z-index: 3;
+  inset: 0;
   overflow: hidden;
+  pointer-events: none;
 }
 
 .gift-hint {
   position: absolute;
   left: 50%;
-  bottom: 1px;
+  bottom: max(14px, env(safe-area-inset-bottom));
+  z-index: 1;
   width: 100%;
   transform: translateX(-50%);
   margin: 0;
@@ -158,11 +157,12 @@ h1 {
   letter-spacing: 0.09em;
   text-transform: uppercase;
   transition: opacity 0.2s;
+  pointer-events: none;
 }
 
 .gift {
   --gift-x: 50%;
-  --gift-y: 72%;
+  --gift-y: 76%;
   position: absolute;
   left: var(--gift-x);
   top: var(--gift-y);
@@ -176,6 +176,8 @@ h1 {
   transition: left 0.36s cubic-bezier(.22,.75,.36,1), top 0.36s cubic-bezier(.22,.75,.36,1), transform 0.25s;
   -webkit-tap-highlight-color: transparent;
   filter: drop-shadow(0 12px 10px rgba(91, 55, 63, 0.18));
+  pointer-events: auto;
+  touch-action: manipulation;
 }
 
 .gift:hover {
@@ -383,16 +385,34 @@ h1 {
   font-style: italic;
 }
 
-@media (max-width: 600px) {
+@media (min-width: 601px) and (max-width: 900px) {
+  .card {
+    width: min(620px, calc(100vw - 48px));
+    padding: 42px 32px;
+  }
+
+  h1 {
+    font-size: clamp(48px, 7vw, 64px);
+  }
+}
+
+@media (max-height: 700px) and (min-width: 601px) {
   .celebration {
-    padding: 12px 10px 18px;
+    padding-block: 20px;
   }
 
   .card {
-    min-height: 660px;
-    height: calc(100dvh - 30px);
-    max-height: 730px;
-    padding: 34px 18px 260px;
+    padding-block: 30px;
+  }
+}
+
+@media (max-width: 600px) {
+  .celebration {
+    padding: 16px 10px;
+  }
+
+  .card {
+    padding: 34px 18px;
   }
 
   h1 {
@@ -403,11 +423,29 @@ h1 {
     font-size: 16px;
   }
 
-  .gift-area {
-    height: 220px;
-  }
-
   .gift {
     width: 106px;
+  }
+
+  .modal-card {
+    padding: 42px 24px 28px;
+  }
+
+  .modal h2 {
+    font-size: clamp(30px, 9vw, 38px);
+  }
+}
+
+@media (max-width: 600px) and (max-height: 500px) {
+  .card {
+    padding-block: 24px;
+  }
+
+  h1 {
+    font-size: clamp(36px, 12vw, 48px);
+  }
+
+  .invite {
+    margin-block: 12px;
   }
 }

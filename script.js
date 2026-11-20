@@ -11,16 +11,20 @@ let caught = false;
 function moveGift() {
   if (caught) return;
 
-  const areaWidth = giftArea.clientWidth;
-  const areaHeight = giftArea.clientHeight;
+  const areaWidth = window.innerWidth;
+  const areaHeight = window.innerHeight;
   const giftWidth = gift.offsetWidth;
   const giftHeight = gift.offsetHeight;
-  const sidePadding = Math.min(70, areaWidth * 0.13);
-  const topPadding = 48;
-  const bottomPadding = 38;
+  const sidePadding = 16;
+  const topPadding = 24;
+  const bottomPadding = 72;
+  const minX = Math.min(sidePadding + giftWidth / 2, areaWidth / 2);
+  const maxX = Math.max(areaWidth - sidePadding - giftWidth / 2, areaWidth / 2);
+  const minY = Math.min(topPadding + giftHeight / 2, areaHeight / 2);
+  const maxY = Math.max(areaHeight - bottomPadding - giftHeight / 2, areaHeight / 2);
 
-  let x = Math.random() * (areaWidth - giftWidth - sidePadding * 2) + giftWidth / 2 + sidePadding;
-  let y = Math.random() * (areaHeight - giftHeight - topPadding - bottomPadding) + giftHeight / 2 + topPadding;
+  const x = Math.random() * (maxX - minX) + minX;
+  const y = Math.random() * (maxY - minY) + minY;
 
   gift.style.setProperty("--gift-x", `${x}px`);
   gift.style.setProperty("--gift-y", `${y}px`);
